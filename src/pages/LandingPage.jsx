@@ -1,7 +1,7 @@
 import React from 'react';
-import { Calendar, Video, Bell, CreditCard, ArrowRight, Star, Link, Clock, Wallet, Shield } from 'lucide-react';
+import { Calendar, Video, Bell, CreditCard, ArrowRight, Star, Link as L, Clock, Wallet, Shield } from 'lucide-react';
 import Badge from '../Components/Common/Badge';
-
+import { Link } from 'react-router-dom';
 function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -18,7 +18,8 @@ function LandingPage() {
 
             </div>
             <button className="bg-black text-white px-4 py-2 rounded-lg text-sm hover:opacity-90 shadow-sm">
-                Get Started
+                <Link to={'/signup'}>Get Started</Link>
+                
               </button>
           </div>
         </div>
@@ -27,7 +28,7 @@ function LandingPage() {
       {/* Hero Section */}
       <div className="container mx-auto px-40 py-40  relative h-screen">
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px)',
           backgroundSize: `60px 60px`
@@ -46,9 +47,11 @@ function LandingPage() {
             Share your unique booking link with patients. Connect through secure video calls, manage appointments, and handle payments—all in one place.
           </p>
           <div className="flex gap-4 justify-center">
-            <button className="bg-black text-white px-6 py-3 rounded-lg text-sm hover:opacity-90 flex items-center gap-2 shadow-sm">
+            <Link to={'/signup'}>
+            <button className="bg-black text-white px-6 py-3 rounded-lg text-sm hover:opacity-90 flex items-center gap-2 shadow-sm hover:cursor-pointer">
               Create your link <ArrowRight size={16} />
             </button>
+            </Link>
             <button className="bg-white border border-gray-400 px-6 py-3 rounded-lg text-sm hover:bg-gray-50 text-black shadow-sm">
               View demo
             </button>
@@ -80,7 +83,7 @@ function LandingPage() {
         </p>
         <div className="grid md:grid-cols-3 gap-4 mx-auto">
           <Feature 
-            icon={<Link className="text-black" />}
+            icon={<L className="text-black" />}
             title="Generate Your Link"
             description="Create your unique booking link and customize your profile in minutes."
           />

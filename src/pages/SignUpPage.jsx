@@ -1,6 +1,7 @@
 import React from 'react'
 import { GoogleLogin } from '@react-oauth/google'
 import {jwtDecode} from "jwt-decode";
+import { Link } from 'react-router-dom';
 
 function SignUpPage() {
     const handleSuccess = (credentialResponse) => {
@@ -21,7 +22,9 @@ function SignUpPage() {
                 {/* <button className='w-full bg-white font-medium py-2 rounded-lg' >Continue with Google</button> */}
                 <GoogleLogin onSuccess={handleSuccess} onError={()=>console.log("failed")}/>
                 <p className='text-white/50 font-semibold'>or</p>
+                <Link to={'/getting-started'} className=' w-full'>
                 <button className='w-full bg-black font-medium py-2 rounded-lg text-white border border-white/20' >Continue with Email</button>
+                </Link>
             </div>
         </div>
     </div>

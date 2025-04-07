@@ -1,11 +1,9 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { ChevronDown } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
-function GettingStarted() {
+function PatientRegister() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const navigate = useNavigate()
   const onSubmit = (data) => {
     async function signup() {
       try {
@@ -18,14 +16,12 @@ function GettingStarted() {
             name: data.name,
             email: data.email,
             password: data.password,
-            role: "doctor"
+            role: "patient"
           })
         });
   
         const json = await res.json();
         console.log(json);
-        navigate('/login')
-
       } catch (err) {
         console.error("Signup error:", err);
       }
@@ -132,4 +128,4 @@ function GettingStarted() {
   );
 }
 
-export default GettingStarted;
+export default PatientRegister;

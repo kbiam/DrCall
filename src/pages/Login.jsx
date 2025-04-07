@@ -3,29 +3,27 @@ import { useForm } from "react-hook-form";
 import { ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-function GettingStarted() {
+function Login() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const navigate = useNavigate()
   const onSubmit = (data) => {
     async function signup() {
       try {
-        const res = await fetch("http://localhost:5000/auth/register", {
+        const res = await fetch("http://localhost:5000/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            name: data.name,
             email: data.email,
             password: data.password,
-            role: "doctor"
           })
         });
   
         const json = await res.json();
         console.log(json);
-        navigate('/login')
-
+        localStorage.setItem("token",json.token)
+        navigate('/doctordashboard')
       } catch (err) {
         console.error("Signup error:", err);
       }
@@ -38,10 +36,7 @@ function GettingStarted() {
       <div className='flex flex-col gap-6 max-w-xl w-full'>
         <div className='space-y-2'>
           <h1 className='text-white font-bold text-2xl'>Welcome to DrCall!</h1>
-          <p className='text-white/50 font-semibold'>
-            We just need some basic info to get your profile setup.<br />
-            You'll be able to edit this later.
-          </p>
+
         </div>
 
         {/* <div className='space-y-2'>
@@ -72,16 +67,7 @@ function GettingStarted() {
             </div>
           </div> */}
 
-          {/* Full Name Field */}
-          <div className='space-y-2 flex flex-col'>
-            <label className='text-[#E5E7EB] text-base font-medium'>Full name</label>
-            <input 
-              type="text" 
-              {...register("name", { required: true })}
-              className='w-full bg-[#1A1A1A] border border-white/10 rounded px-3 py-2 text-white outline-none focus:border-white/20 transition-colors'
-              placeholder="Your full name"
-            />
-          </div>
+
           <div className='space-y-2 flex flex-col'>
             <label className='text-[#E5E7EB] text-base font-medium'>Email</label>
             <input 
@@ -123,7 +109,7 @@ function GettingStarted() {
             type="submit"
             className='w-full bg-white text-black font-medium rounded py-2 px-4 hover:bg-gray-100 transition-colors flex items-center justify-center gap-2'
           >
-            Sign Up
+            Login
             <span className='text-lg'>→</span>
           </button>
         </form>
@@ -132,4 +118,4 @@ function GettingStarted() {
   );
 }
 
-export default GettingStarted;
+export default Login;
