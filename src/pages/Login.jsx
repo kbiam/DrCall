@@ -36,6 +36,7 @@ function Login() {
       <div className='flex flex-col gap-6 max-w-xl w-full'>
         <div className='space-y-2'>
           <h1 className='text-white font-bold text-2xl'>Welcome to DrCall!</h1>
+          <h1 className='text-white/50 font-medium text-lg'>Please login your account</h1>
 
         </div>
 
